@@ -1,0 +1,63 @@
+# PHP
+*.log
+*.tmp
+*.cache
+/vendor/
+composer.phar
+.env
+.env.local
+.env.production
+
+# Database
+*.sqlite
+*.db
+*.sql.backup
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Logs
+*.log
+logs/
+email_logs.txt
+
+# Exports and backups
+exports/*.csv
+exports/*.pdf
+exports/*.xlsx
+backups/*.sql
+backups/*.zip
+
+# Test files
+test_*.php
+quick_test_*.php
+
+# Sensitive configuration
+config_local.php
+private_config.php
+
+# Cache
+cache/
+temp/
+tmp/
+
+# Upload directories (if any)
+uploads/
+files/
+
+# Node modules (if using any JS build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Composer
+composer.lock
