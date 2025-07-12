@@ -1,0 +1,293 @@
+/* Admin Tiket Bulk Actions - Enhanced Styling */
+
+/* Custom Animations */
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.8);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Enhanced Glass Effect */
+.glass-effect-enhanced {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Floating Animation */
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Glow Effect */
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Shimmer Loading Effect */
+.shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* Enhanced Button Styles */
+.btn-enhanced {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-enhanced:hover::before {
+    left: 100%;
+}
+
+/* Card Hover Effects */
+.card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Status Badge Animations */
+.status-badge {
+    transition: all 0.3s ease;
+}
+
+.status-badge:hover {
+    transform: scale(1.1);
+}
+
+/* Table Row Animations */
+.table-row-animate {
+    animation: slideInFromTop 0.6s ease-out;
+}
+
+.table-row-animate:nth-child(even) {
+    animation-delay: 0.1s;
+}
+
+.table-row-animate:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+/* Checkbox Enhancements */
+.enhanced-checkbox {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.enhanced-checkbox:checked {
+    background-color: #6366f1;
+    border-color: #6366f1;
+    animation: scaleIn 0.2s ease-out;
+}
+
+.enhanced-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Modal Enhancements */
+.modal-enhanced {
+    animation: scaleIn 0.3s ease-out;
+}
+
+.modal-backdrop {
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Progress Bar */
+.progress-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 2px;
+}
+
+/* Notification Styles */
+.notification-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+.notification-error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+.notification-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+/* Loading Spinner Enhancements */
+.spinner-enhanced {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.spinner-enhanced::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid transparent;
+    border-top: 2px solid #8b5cf6;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite reverse;
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Enhanced Form Controls */
+.form-control-enhanced {
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.form-control-enhanced:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    outline: none;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .glass-effect-enhanced {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+    }
+    
+    .card-hover:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .glass-effect-enhanced {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .form-control-enhanced {
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        border-color: #374151;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .glass-effect-enhanced,
+    .card-hover,
+    .btn-enhanced {
+        box-shadow: none !important;
+        transform: none !important;
+    }
+    
+    .animate-float,
+    .animate-glow,
+    .shimmer {
+        animation: none !important;
+    }
+} 

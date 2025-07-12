@@ -1,0 +1,3 @@
+# Protect exports directory
+Order Deny,Allow
+Deny from all 

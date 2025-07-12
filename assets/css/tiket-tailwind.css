@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Animations */
+@layer utilities {
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .animate-pop {
+    animation: pop 0.6s cubic-bezier(.4,0,.2,1);
+  }
+  @keyframes pop {
+    0% { transform: scale(0.7); }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-pulse-once {
+    animation: pulseOnce 0.8s ease-out;
+  }
+  @keyframes pulseOnce {
+    0% { box-shadow: 0 0 0 0 #6ee7b7; }
+    100% { box-shadow: 0 0 0 12px #6ee7b700; }
+  }
+
+  .animate-bounce-slow {
+    animation: bounceSlow 2.2s ease-in-out infinite;
+  }
+  @keyframes bounceSlow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-18px); }
+  }
+}
+
+/* Custom Form Styles */
+@layer components {
+  .ticket-form {
+    @apply bg-white/90 rounded-2xl shadow-2xl p-8 relative overflow-hidden animate-fade-in;
+    box-shadow: 0 8px 32px 0 rgba(34,197,94,0.12), 0 1.5px 4px 0 rgba(59,130,246,0.08);
+    border: 1.5px solid #bbf7d0;
+  }
+  .ticket-form input,
+  .ticket-form select {
+    @apply rounded-lg border border-green-200 px-3 py-2 text-green-900 placeholder-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all;
+    background: linear-gradient(90deg, #f0fdf4 0%, #e0f2fe 100%);
+  }
+  .ticket-form label {
+    @apply text-sm font-medium text-green-800;
+  }
+  .ticket-form button[type="submit"] {
+    @apply w-full flex justify-center py-3 px-6 text-lg font-bold rounded-lg text-white bg-gradient-to-r from-green-400 to-blue-400 hover:from-green-500 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 shadow-lg transition-all animate-pulse-once relative;
+    box-shadow: 0 4px 24px 0 #6ee7b7cc;
+  }
+  .ticket-form .icon {
+    @apply absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl animate-bounce;
+  }
+}
+
+/* Extra: Gradient background for body */
+body {
+  background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+} 

@@ -1,0 +1,29 @@
+/* peta-tailwind.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animasi custom */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 1.2s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: none; }
+  }
+}
+
+.zoo-map-embed {
+  box-shadow: 0 8px 32px 0 rgba(34,197,94,0.12), 0 1.5px 4px 0 rgba(59,130,246,0.08);
+}
+
+/* Responsive SVG container */
+.zoo-map-embed svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 350px;
+  margin: 0 auto;
+} 

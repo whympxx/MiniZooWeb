@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Export Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            border-left: 4px solid #007bff;
+        }
+        .error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        .success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        .download-link {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .download-link:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Export Interface</h1>
+    
+    <div class="container">
+        <h2>Export All Tickets</h2>
+        <button onclick="exportAllTickets()">Export All Tickets</button>
+        <div id="exportAllResult"></div>
+    </div>
+    
+    <div class="container">
+        <h2>Export Statistics</h2>
+        <button onclick="getStats()">Get Statistics</button>
+        <div id="statsResult"></div>
+    </div>
+    
+    <div class="container">
+        <h2>Filtered Export</h2>
+        <form id="filterForm">
+            <label>Status: <select name="status">
+                <option value="">All</option>
+                <option value="pending">Pending</option>
+                <option value="paid">Paid</option>
+                <option value="failed">Failed</option>
+            </select></label><br><br>
+            
+            <label>Category: <select name="category">
+                <option value="">All</option>
+                <option value="dewasa">Dewasa</option>
+                <option value="anak">Anak</option>
+                <option value="keluarga">Keluarga</option>
+            </select></label><br><br>
+            
+            <label>Date From: <input type="date" name="date_from"></label><br><br>
+            <label>Date To: <input type="date" name="date_to"></label><br><br>
+            
+            <button type="button" onclick="exportFilteredTickets()">Export Filtered</button>
+        </form>
+        <div id="exportFilteredResult"></div>
+    </div>
+
+    <script>
+        function showResult(elementId, data, isError = false) {
+            const element = document.getElementById(elementId);
+            const className = isError ? 'result error' : 'result success';
+            
+            if (data.success) {
+                let html = `<div class="${className}">`;
+                html += `<h3>Success!</h3>`;
+                html += `<p>${data.message}</p>`;
+                
+                if (data.count !== undefined) {
+                    html += `<p>Records exported: ${data.count}</p>`;
+                }
+                
+                if (data.download_url) {
+                    html += `<a href="${data.download_url}" class="download-link">Download File</a>`;
+                }
+                
+                if (data.stats) {
+                    html += `<h4>Statistics:</h4>`;
+                    html += `<ul>`;
+                    html += `<li>Total Orders: ${data.stats.total_orders}</li>`;
+                    html += `<li>Pending Orders: ${data.stats.pending_orders}</li>`;
+                    html += `<li>Paid Orders: ${data.stats.paid_orders}</li>`;
+                    html += `<li>Failed Orders: ${data.stats.failed_orders}</li>`;
+                    html += `<li>Total Revenue: ${data.stats.total_revenue_formatted}</li>`;
+                    html += `</ul>`;
+                }
+                
+                html += `</div>`;
+                element.innerHTML = html;
+            } else {
+                element.innerHTML = `<div class="result error"><h3>Error!</h3><p>${data.message}</p></div>`;
+            }
+        }
+
+        function exportAllTickets() {
+            fetch('pages/tiket_export.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'action=export_all'
+            })
+            .then(response => response.json())
+            .then(data => {
+                showResult('exportAllResult', data, !data.success);
+            })
+            .catch(error => {
+                showResult('exportAllResult', {success: false, message: 'Network error: ' + error.message}, true);
+            });
+        }
+
+        function getStats() {
+            fetch('pages/tiket_export.php?stats=1')
+            .then(response => response.json())
+            .then(data => {
+                showResult('statsResult', data, !data.success);
+            })
+            .catch(error => {
+                showResult('statsResult', {success: false, message: 'Network error: ' + error.message}, true);
+            });
+        }
+
+        function exportFilteredTickets() {
+            const form = document.getElementById('filterForm');
+            const formData = new FormData(form);
+            formData.append('action', 'export_filtered');
+            
+            fetch('pages/tiket_export.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                showResult('exportFilteredResult', data, !data.success);
+            })
+            .catch(error => {
+                showResult('exportFilteredResult', {success: false, message: 'Network error: ' + error.message}, true);
+            });
+        }
+    </script>
+</body>
+</html> 

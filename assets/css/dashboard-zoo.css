@@ -1,0 +1,211 @@
+/* dashboard-zoo.css */
+
+/* Background custom untuk tema kebun binatang */
+.zoo-bg {
+  background-image: linear-gradient(135deg, #fef9c3 0%, #bbf7d0 50%, #bae6fd 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Header dengan animasi hewan */
+.zoo-header {
+  background: linear-gradient(90deg, #fef9c3 0%, #bbf7d0 100%);
+  box-shadow: 0 4px 24px 0 rgba(34,197,94,0.08);
+  overflow: visible;
+}
+
+/* Kartu info dan statistik dengan efek hover */
+.zoo-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 12px 0 rgba(34,197,94,0.08);
+}
+.zoo-card-hover:hover {
+  transform: scale(1.04) rotate(-1deg);
+  box-shadow: 0 12px 36px 0 rgba(34,197,94,0.22);
+}
+
+.zoo-stat {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.zoo-stat-hover:hover {
+  transform: scale(1.07) rotate(1deg);
+  box-shadow: 0 12px 36px 0 rgba(59,130,246,0.22);
+}
+
+.zoo-info-text {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  letter-spacing: 0.5px;
+}
+
+.zoo-role {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+/* Animasi hewan berjalan di header */
+.zoo-animals-anim {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.zoo-animal {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.zoo-lion {
+  background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f981.png');
+}
+.zoo-elephant {
+  background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f418.png');
+}
+.zoo-giraffe {
+  background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f992.png');
+}
+.zoo-monkey {
+  background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f412.png');
+}
+.zoo-panda {
+  background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f43c.png');
+  width: 32px;
+  height: 32px;
+  animation: none;
+}
+.zoo-tiger {
+  background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f42f.png');
+  width: 32px;
+  height: 32px;
+  animation: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .zoo-animals-anim {
+    gap: 8px;
+  }
+  .zoo-animal {
+    width: 32px;
+    height: 32px;
+  }
+} 
+
+/* Sidebar responsive & transition */
+#sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 30;
+  width: 18rem;
+  background: linear-gradient(to bottom, #fff, #f0fdf4);
+  box-shadow: 0 8px 32px 0 rgba(34,197,94,0.15);
+  border-radius: 0 1.5rem 1.5rem 0;
+}
+
+/* Sidebar menu active state */
+.active-menu {
+  background: linear-gradient(90deg, #bbf7d0 0%, #fef9c3 100%) !important;
+  color: #166534 !important;
+  box-shadow: 0 2px 8px 0 rgba(34,197,94,0.15);
+  transform: translateX(4px);
+}
+
+.active-menu .bg-green-500 {
+  opacity: 1 !important;
+}
+
+/* Sidebar menu hover effects */
+#sidebar nav a:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px 0 rgba(34,197,94,0.1);
+}
+
+/* Sidebar logo animation */
+#sidebar .bg-gradient-to-br {
+  transition: all 0.3s ease;
+}
+
+#sidebar .bg-gradient-to-br:hover {
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 4px 16px 0 rgba(34,197,94,0.2);
+}
+
+/* Sidebar loading animation */
+@keyframes sidebarSlideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.sidebar-open {
+  animation: sidebarSlideIn 0.3s ease-out;
+  transform: translateX(0);
+}
+
+.sidebar-closed {
+  transform: translateX(-100%);
+}
+
+/* Sidebar menu item pulse animation */
+@keyframes menuPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+#sidebar nav a:hover span:first-child {
+  animation: menuPulse 0.6s ease-in-out;
+}
+
+/* Overlay for mobile sidebar */
+#sidebar-overlay {
+  transition: background 0.3s;
+}
+
+/* Dropdown menu animation */
+.dropdown-menu {
+  animation: dropdownFade 0.2s ease;
+}
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Avatar ring effect */
+.dropdown button .rounded-full {
+  box-shadow: 0 0 0 2px #bbf7d0, 0 2px 8px 0 rgba(34,197,94,0.08);
+  transition: box-shadow 0.2s;
+}
+.dropdown button:hover .rounded-full {
+  box-shadow: 0 0 0 3px #22c55e, 0 4px 16px 0 rgba(34,197,94,0.18);
+}
+
+/* Sticky footer utility */
+.sticky {
+  position: sticky;
+}
+.bottom-0 {
+  bottom: 0;
+}
+
+/* Utility for smooth transitions */
+.transition-all {
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+/* Main content transition */
+.flex-1.flex.flex-col {
+  transition: margin-left 0.3s cubic-bezier(.4,0,.2,1);
+} 
