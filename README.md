@@ -1,3 +1,4 @@
+![alt text](https://github.com/whympxx/MiniZooWeb/blob/main/TampilanDashboard.png?raw=true)
 # 🦁 Zoo Management System
 
 [![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-blue.svg)](https://php.net)
