@@ -1,0 +1,217 @@
+/* Ticket Export Page Styles */
+
+/* Animation for fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Ticket container styling */
+.ticket-container {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 2px solid #10b981;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.1), 0 10px 10px -5px rgba(16, 185, 129, 0.04);
+    transition: all 0.3s ease;
+}
+
+.ticket-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.1), 0 10px 10px -5px rgba(16, 185, 129, 0.04);
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .ticket-container {
+        border: 2px solid #000 !important;
+        padding: 20px !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+    }
+    
+    body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 20px !important;
+    }
+    
+    .max-w-md {
+        max-width: none !important;
+        width: 100% !important;
+    }
+}
+
+/* QR Code placeholder styling */
+.qr-placeholder {
+    background: linear-gradient(45deg, #f3f4f6 25%, transparent 25%), 
+                linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #f3f4f6 75%), 
+                linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+}
+
+/* Button hover effects */
+.btn-print {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-print:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.3);
+}
+
+.btn-back {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+    transform: translateY(-1px);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+    .ticket-container {
+        padding: 16px;
+        margin: 0 8px;
+    }
+    
+    .flex.gap-4 {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .flex-1 {
+        flex: none;
+    }
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Success animation */
+.success-checkmark {
+    animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0,0,0);
+    }
+    40%, 43% {
+        transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+/* Error styling */
+.error-message {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border: 1px solid #f87171;
+    color: #dc2626;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Info styling */
+.info-message {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border: 1px solid #60a5fa;
+    color: #2563eb;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .ticket-container,
+    .btn-print,
+    .btn-back,
+    .loading,
+    .success-checkmark {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .ticket-container {
+        border: 3px solid #000;
+        background: white;
+    }
+    
+    .btn-print {
+        background: #000;
+        color: white;
+        border: 2px solid #000;
+    }
+    
+    .btn-back {
+        background: white;
+        color: #000;
+        border: 2px solid #000;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .ticket-container {
+        background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        border-color: #10b981;
+        color: #f9fafb;
+    }
+    
+    .btn-back {
+        background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+        color: #f9fafb;
+    }
+    
+    .btn-back:hover {
+        background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
+    }
+} 
+} 

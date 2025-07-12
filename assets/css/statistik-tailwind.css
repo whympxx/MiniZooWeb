@@ -1,0 +1,28 @@
+/* statistik-tailwind.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Animations */
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 3.5s linear infinite;
+  }
+  .zoo-stat {
+    transition: box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 4px 24px 0 rgba(34,197,94,0.08);
+  }
+  .zoo-stat-hover {
+    box-shadow: 0 8px 32px 0 rgba(34,197,94,0.18);
+    transform: translateY(-6px) scale(1.04);
+  }
+  .zoo-info-text {
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Tambahan styling untuk chart container */
+#visitorChart {
+  max-width: 100%;
+  height: 320px !important;
+} 

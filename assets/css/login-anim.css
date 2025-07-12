@@ -1,0 +1,34 @@
+/* Animasi untuk gambar ilustrasi (masuk dengan fade dan scale) */
+.login-anim {
+  animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animasi tombol login (pulse saat hover) */
+.login-btn-anim {
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.login-btn-anim:hover {
+  animation: pulseBtn 0.4s;
+}
+@keyframes pulseBtn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+} 
