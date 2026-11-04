@@ -1,8 +1,22 @@
-![Tampilan Dashboard](TampilanDashboard.png)
-
 # 🦁 Zoo Management System (Laravel)
 
-Aplikasi web kebun binatang untuk pemesanan tiket online dan panel admin, dibangun dengan **Laravel 12** (PHP 8.2+).
+![Dashboard pengunjung dengan pulau safari 3D](TampilanDashboard.png)
+
+Aplikasi web kebun binatang untuk pemesanan tiket online dan panel admin, dibangun dengan **Laravel 12** (PHP 8.2+). Tampilannya bertema hutan safari dengan animasi 3D: pulau low-poly Three.js, peta zona isometrik, kartu hewan yang bisa dibalik, dan diagram batang 3D.
+
+## Tampilan
+
+| Login | Jelajah Satwa (kartu flip 3D) |
+|---|---|
+| ![Halaman login dengan pulau 3D](docs/screenshots/login.webp) | ![Kartu hewan yang bisa dibalik](docs/screenshots/jelajah.webp) |
+| **Peta 3D interaktif** | **Pesan Tiket + pratinjau tiket 3D** |
+| ![Peta zona isometrik 3D](docs/screenshots/peta.webp) | ![Form pesan tiket dengan pratinjau](docs/screenshots/pesan-tiket.webp) |
+| **Statistik (diagram batang 3D)** | **Riwayat Pesanan** |
+| ![Statistik dengan diagram 3D](docs/screenshots/statistik.webp) | ![Riwayat pesanan](docs/screenshots/riwayat.webp) |
+| **E-Tiket siap cetak** | **Admin: Dashboard** |
+| ![E-tiket](docs/screenshots/e-tiket.webp) | ![Dashboard admin](docs/screenshots/admin-dashboard.webp) |
+| **Admin: Manajemen Tiket** | |
+| ![Manajemen tiket admin](docs/screenshots/admin-tiket.webp) | |
 
 ## Fitur
 

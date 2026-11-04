@@ -77,7 +77,7 @@
             </p>
         </div>
 
-        <div class="hero-3d hidden lg:block reveal order-1 lg:order-2" data-zoo-scene style="min-height: 600px;">
+        <div class="hero-3d auth-hero hidden lg:block reveal order-1 lg:order-2" data-zoo-scene style="min-height: 600px;">
             <div class="hero-content p-8 text-right">
                 <span class="wood-sign">🎟️ Daftar Gratis</span>
                 <h1 class="mt-5 text-4xl font-bold text-green-900 leading-tight">200+ Satwa<br>Siap Menyapa!</h1>

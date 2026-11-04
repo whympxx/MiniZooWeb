@@ -251,6 +251,8 @@ body.zoo-body {
 .hero-3d { position: relative; overflow: hidden; border-radius: 32px; min-height: 380px; background: linear-gradient(180deg, #bae6fd 0%, #e0f7d4 70%); }
 .hero-3d canvas.zoo-scene { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
 .hero-3d .hero-content { position: relative; z-index: 2; }
+/* Panel login/daftar: pulau 3D di bawah judul agar teks tidak tertimpa */
+.hero-3d.auth-hero canvas.zoo-scene { top: 200px !important; height: calc(100% - 200px) !important; }
 /* Di layar kecil, pulau 3D ditaruh di bawah teks agar tidak menimpa */
 @media (max-width: 767px) {
     .hero-3d { padding-bottom: 270px; }

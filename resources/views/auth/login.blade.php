@@ -9,7 +9,7 @@
     <div class="w-full max-w-5xl grid lg:grid-cols-2 gap-8 items-center">
 
         {{-- Panel 3D --}}
-        <div class="hero-3d hidden lg:block reveal" data-zoo-scene style="min-height: 560px;">
+        <div class="hero-3d auth-hero hidden lg:block reveal" data-zoo-scene style="min-height: 560px;">
             <div class="hero-content p-8">
                 <span class="wood-sign">🌿 Selamat Datang</span>
                 <h1 class="mt-5 text-4xl font-bold text-green-900 leading-tight">Petualangan<br>Safari Menantimu!</h1>
