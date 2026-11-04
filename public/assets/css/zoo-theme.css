@@ -1,0 +1,321 @@
+/* =========================================================
+   Zoo Theme — tema hutan/safari + efek 3D
+   ========================================================= */
+:root {
+    --jungle-950: #052e16;
+    --jungle-900: #0b3d22;
+    --jungle-800: #14532d;
+    --jungle-700: #166534;
+    --leaf-500: #22c55e;
+    --leaf-400: #4ade80;
+    --leaf-200: #bbf7d0;
+    --sand-50: #fffbeb;
+    --sand-100: #fef3c7;
+    --sand-300: #fcd34d;
+    --sunset-500: #f97316;
+    --sunset-400: #fb923c;
+    --sky-400: #38bdf8;
+    --bark-700: #78350f;
+    --ink: #1c2a20;
+    --muted: #4b6354;
+    --card: rgba(255, 253, 245, 0.82);
+    --card-border: rgba(255, 255, 255, 0.65);
+    --shadow-3d: 0 1px 0 rgba(255,255,255,.6) inset, 0 18px 40px -12px rgba(5, 46, 22, .35), 0 6px 14px -6px rgba(5, 46, 22, .25);
+    --radius: 24px;
+    --font-display: 'Fredoka', 'Nunito', system-ui, sans-serif;
+    --font-body: 'Nunito', system-ui, sans-serif;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+body.zoo-body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: linear-gradient(180deg, #fff7d6 0%, #e9f9dc 38%, #c9efc0 70%, #a7e0a0 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.font-display, h1, h2, h3, .zoo-title { font-family: var(--font-display); }
+
+/* ---------- Latar hutan berlapis (parallax) ---------- */
+.zoo-scenery {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+}
+.zoo-scenery .sun {
+    position: absolute; top: 6%; right: 9%; width: 140px; height: 140px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff6c2, #fcd34d 55%, #f59e0b 100%);
+    box-shadow: 0 0 80px 30px rgba(252, 211, 77, .45);
+    animation: sun-pulse 6s ease-in-out infinite;
+}
+.zoo-scenery .cloud {
+    position: absolute; height: 46px; border-radius: 40px; background: rgba(255,255,255,.85);
+    filter: drop-shadow(0 8px 10px rgba(0,0,0,.05));
+    animation: cloud-drift linear infinite;
+}
+.zoo-scenery .cloud::before, .zoo-scenery .cloud::after {
+    content: ''; position: absolute; background: inherit; border-radius: 50%;
+}
+.zoo-scenery .cloud::before { width: 60px; height: 60px; top: -28px; left: 22px; }
+.zoo-scenery .cloud::after { width: 44px; height: 44px; top: -18px; right: 20px; }
+.zoo-scenery .hills { position: absolute; left: -5%; right: -5%; bottom: 0; width: 110%; }
+.zoo-scenery .hills.back { height: 42vh; color: #9fd894; }
+.zoo-scenery .hills.mid { height: 30vh; color: #6cc070; }
+.zoo-scenery .hills.front { height: 18vh; color: #3f9a4f; }
+.zoo-scenery .leaf {
+    position: absolute; top: -10%; font-size: 22px; opacity: .8;
+    animation: leaf-fall linear infinite;
+}
+
+@keyframes sun-pulse { 50% { transform: scale(1.06); box-shadow: 0 0 110px 40px rgba(252, 211, 77, .5); } }
+@keyframes cloud-drift { from { transform: translateX(-30vw); } to { transform: translateX(130vw); } }
+@keyframes leaf-fall {
+    0%   { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0) rotateZ(0); }
+    50%  { transform: translate3d(40px, 55vh, 0) rotateX(180deg) rotateY(90deg) rotateZ(90deg); }
+    100% { transform: translate3d(-20px, 115vh, 0) rotateX(360deg) rotateY(180deg) rotateZ(200deg); }
+}
+
+/* ---------- Navbar ---------- */
+/* Specificity 0 agar kelas responsif Tailwind (hidden, xl:hidden, sm:flex) tetap berlaku */
+:where(.zoo-nav .nav-link) { display: inline-flex; }
+.zoo-logo .brand { white-space: nowrap; }
+.zoo-nav {
+    position: sticky; top: 0; z-index: 40;
+    background: linear-gradient(90deg, rgba(5,46,22,.92), rgba(22,101,52,.9));
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px -10px rgba(5,46,22,.6);
+    border-bottom: 3px solid rgba(252, 211, 77, .7);
+}
+.zoo-nav .nav-link {
+    color: #dcfce7; font-weight: 700; padding: .5rem .85rem; border-radius: 999px;
+    transition: background .2s, color .2s, transform .2s; align-items: center; gap: .4rem;
+    white-space: nowrap;
+}
+.zoo-nav .nav-link:hover { background: rgba(255,255,255,.12); color: #fff; transform: translateY(-1px); }
+.zoo-nav .nav-link.active { background: var(--sand-300); color: var(--jungle-900); box-shadow: 0 4px 0 #d97706; }
+
+/* Logo 3D berputar */
+.zoo-logo { perspective: 400px; display: inline-flex; align-items: center; gap: .6rem; }
+.zoo-logo .cube {
+    width: 42px; height: 42px; position: relative; transform-style: preserve-3d;
+    animation: logo-spin 9s ease-in-out infinite;
+}
+.zoo-logo .cube span {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 24px; border-radius: 12px; background: linear-gradient(135deg, #fde68a, #f59e0b);
+    border: 2px solid rgba(255,255,255,.7); backface-visibility: hidden;
+}
+.zoo-logo .cube span:nth-child(1) { transform: translateZ(21px); }
+.zoo-logo .cube span:nth-child(2) { transform: rotateY(90deg) translateZ(21px); }
+.zoo-logo .cube span:nth-child(3) { transform: rotateY(180deg) translateZ(21px); }
+.zoo-logo .cube span:nth-child(4) { transform: rotateY(-90deg) translateZ(21px); }
+.zoo-logo .brand { font-family: var(--font-display); font-weight: 700; font-size: 1.45rem; color: #fff; letter-spacing: .5px; }
+.zoo-logo .brand small { display: block; font-size: .7rem; font-weight: 600; color: #bbf7d0; letter-spacing: 2px; text-transform: uppercase; margin-top: -4px; }
+@keyframes logo-spin {
+    0%, 15% { transform: rotateY(0); } 25%, 40% { transform: rotateY(-90deg); }
+    50%, 65% { transform: rotateY(-180deg); } 75%, 90% { transform: rotateY(-270deg); } 100% { transform: rotateY(-360deg); }
+}
+
+/* ---------- Kartu 3D ---------- */
+.zoo-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-3d);
+    backdrop-filter: blur(12px);
+    position: relative;
+}
+.zoo-card.leafy::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: radial-gradient(circle at 100% 0%, rgba(74,222,128,.18), transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(252,211,77,.18), transparent 45%);
+}
+
+[data-tilt] {
+    transform-style: preserve-3d;
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+    transition: transform .25s ease-out, box-shadow .25s ease-out;
+    will-change: transform;
+}
+[data-tilt].is-tilting { transition: transform .06s linear; box-shadow: 0 30px 60px -18px rgba(5,46,22,.45); }
+[data-tilt] .pop { transform: translateZ(40px); }
+[data-tilt] .pop-sm { transform: translateZ(22px); }
+[data-tilt] .glare {
+    position: absolute; inset: 0; border-radius: inherit; pointer-events: none; overflow: hidden;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,.45), transparent 55%);
+    opacity: 0; transition: opacity .3s;
+}
+[data-tilt].is-tilting .glare { opacity: 1; }
+
+/* Kartu hewan yang bisa dibalik (flip 3D) */
+.flip-card { perspective: 1100px; height: 320px; cursor: pointer; }
+.flip-card .flip-inner {
+    position: relative; width: 100%; height: 100%; transform-style: preserve-3d;
+    transition: transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.flip-card:hover .flip-inner, .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-card .face {
+    position: absolute; inset: 0; border-radius: var(--radius); overflow: hidden; backface-visibility: hidden;
+    box-shadow: var(--shadow-3d);
+}
+.flip-card .face.back {
+    transform: rotateY(180deg);
+    background: linear-gradient(160deg, var(--jungle-800), var(--jungle-950));
+    color: #ecfdf5; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center;
+}
+.flip-card .face img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
+.flip-card .face .label {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem 1.2rem;
+    background: linear-gradient(transparent, rgba(5,46,22,.9)); color: #fff;
+}
+
+/* ---------- Tombol ---------- */
+.btn-zoo {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    font-family: var(--font-display); font-weight: 600; letter-spacing: .3px;
+    padding: .8rem 1.5rem; border-radius: 16px; color: #fff; border: 0; cursor: pointer;
+    background: linear-gradient(180deg, #34d058, #16a34a);
+    box-shadow: 0 6px 0 #0f6b2f, 0 12px 20px -8px rgba(5,46,22,.5);
+    transition: transform .12s, box-shadow .12s, filter .2s;
+}
+.btn-zoo:hover { filter: brightness(1.06); transform: translateY(-2px); box-shadow: 0 8px 0 #0f6b2f, 0 16px 24px -8px rgba(5,46,22,.5); }
+.btn-zoo:active { transform: translateY(4px); box-shadow: 0 2px 0 #0f6b2f, 0 6px 10px -6px rgba(5,46,22,.5); }
+.btn-zoo:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+.btn-zoo.sunset { background: linear-gradient(180deg, #fdba74, #f97316); box-shadow: 0 6px 0 #c2410c, 0 12px 20px -8px rgba(194,65,12,.5); }
+.btn-zoo.sunset:hover { box-shadow: 0 8px 0 #c2410c, 0 16px 24px -8px rgba(194,65,12,.5); }
+.btn-zoo.sunset:active { box-shadow: 0 2px 0 #c2410c; }
+.btn-zoo.sky { background: linear-gradient(180deg, #7dd3fc, #0ea5e9); box-shadow: 0 6px 0 #0369a1, 0 12px 20px -8px rgba(3,105,161,.5); }
+.btn-zoo.sky:active { box-shadow: 0 2px 0 #0369a1; }
+.btn-zoo.ghost { background: rgba(255,255,255,.75); color: var(--jungle-800); box-shadow: 0 6px 0 #bbd8c0, 0 12px 20px -10px rgba(5,46,22,.3); }
+.btn-zoo.ghost:active { box-shadow: 0 2px 0 #bbd8c0; }
+.btn-zoo.danger { background: linear-gradient(180deg, #f87171, #dc2626); box-shadow: 0 6px 0 #991b1b; }
+
+/* ---------- Form ---------- */
+.zoo-label { display: block; font-weight: 800; font-size: .85rem; color: var(--jungle-800); margin-bottom: .35rem; }
+.zoo-input {
+    width: 100%; padding: .75rem 1rem; border-radius: 14px; font-size: 1rem; color: var(--ink);
+    background: #fffef7; border: 2px solid #d9ecd4;
+    box-shadow: inset 0 3px 6px rgba(5,46,22,.06);
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.zoo-input:focus { outline: none; border-color: var(--leaf-500); box-shadow: 0 0 0 4px rgba(34,197,94,.18), inset 0 3px 6px rgba(5,46,22,.04); transform: translateY(-1px); }
+.zoo-input-wrap { position: relative; }
+.zoo-input-wrap .icon, .zoo-input-wrap .toggle { z-index: 2; }
+.zoo-input-wrap .icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 1.1rem; pointer-events: none; }
+.zoo-input-wrap .zoo-input { padding-left: 2.6rem; }
+.zoo-input-wrap .toggle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: 0; cursor: pointer; font-size: 1.1rem; }
+
+/* Pilihan berbentuk kartu (kategori tiket / metode bayar) */
+.choice-card { position: relative; cursor: pointer; display: block; }
+.choice-card input { position: absolute; opacity: 0; pointer-events: none; }
+.choice-card .choice-body {
+    border-radius: 18px; padding: 1rem; text-align: center; background: #fffef7; border: 2px solid #d9ecd4;
+    transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .2s, box-shadow .3s; transform-style: preserve-3d;
+}
+.choice-card:hover .choice-body { transform: perspective(600px) rotateX(8deg) translateY(-3px); }
+.choice-card input:checked + .choice-body {
+    border-color: var(--leaf-500); background: linear-gradient(180deg, #f0fdf4, #dcfce7);
+    box-shadow: 0 14px 24px -12px rgba(22,101,52,.55); transform: perspective(600px) rotateX(10deg) translateY(-6px);
+}
+.choice-card input:focus-visible + .choice-body { box-shadow: 0 0 0 4px rgba(34,197,94,.3); }
+.choice-card .emoji { font-size: 2.2rem; display: block; transition: transform .4s; }
+.choice-card input:checked + .choice-body .emoji { transform: translateZ(30px) scale(1.15); animation: bounce-y 1.2s ease-in-out infinite; }
+
+/* ---------- Badge, alert, stat ---------- */
+.zoo-badge { display: inline-flex; align-items: center; gap: .3rem; padding: .25rem .7rem; border-radius: 999px; font-size: .75rem; font-weight: 800; }
+.zoo-badge.paid { background: #dcfce7; color: #166534; }
+.zoo-badge.pending { background: #fef3c7; color: #92400e; }
+.zoo-badge.failed { background: #fee2e2; color: #991b1b; }
+
+.zoo-alert { border-radius: 16px; padding: .85rem 1.1rem; font-weight: 700; display: flex; gap: .6rem; align-items: flex-start; }
+.zoo-alert.success { background: #dcfce7; color: #14532d; border: 2px solid #86efac; }
+.zoo-alert.error { background: #fee2e2; color: #7f1d1d; border: 2px solid #fca5a5; animation: shake .4s; }
+
+.stat-3d { padding: 1.4rem; text-align: center; overflow: hidden; }
+.stat-3d .stat-icon { font-size: 2.4rem; display: inline-block; filter: drop-shadow(0 8px 6px rgba(0,0,0,.15)); }
+.stat-3d .stat-value { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--jungle-800); }
+.stat-3d .stat-label { font-size: .8rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+.section-title { font-family: var(--font-display); font-weight: 700; color: var(--jungle-900); font-size: clamp(1.6rem, 3vw, 2.3rem); }
+.section-sub { color: var(--muted); font-weight: 600; }
+
+/* Pita judul bergaya papan kayu */
+.wood-sign {
+    display: inline-block; padding: .4rem 1.2rem; border-radius: 10px; color: #fff7ed; font-family: var(--font-display); font-weight: 600;
+    background: repeating-linear-gradient(90deg, #92400e 0 18px, #a1520f 18px 36px);
+    box-shadow: 0 5px 0 #5b2a06, 0 10px 18px -6px rgba(0,0,0,.35); transform: rotate(-2deg);
+}
+
+/* ---------- Hero 3D ---------- */
+.hero-3d { position: relative; overflow: hidden; border-radius: 32px; min-height: 380px; background: linear-gradient(180deg, #bae6fd 0%, #e0f7d4 70%); }
+.hero-3d canvas.zoo-scene { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
+.hero-3d .hero-content { position: relative; z-index: 2; }
+/* Panel login/daftar: pulau 3D di bawah judul agar teks tidak tertimpa */
+.hero-3d.auth-hero canvas.zoo-scene { top: 200px !important; height: calc(100% - 200px) !important; }
+/* Di layar kecil, pulau 3D ditaruh di bawah teks agar tidak menimpa */
+@media (max-width: 767px) {
+    .hero-3d { padding-bottom: 270px; }
+    .hero-3d canvas.zoo-scene { top: auto !important; bottom: 0; height: 290px !important; }
+}
+
+/* Hewan melayang (emoji 3D dengan bayangan) */
+.float-animal { display: inline-block; animation: float-3d 5s ease-in-out infinite; filter: drop-shadow(0 18px 10px rgba(5,46,22,.25)); }
+@keyframes float-3d {
+    0%, 100% { transform: translateY(0) rotateY(-12deg) rotateZ(-3deg); }
+    50% { transform: translateY(-16px) rotateY(12deg) rotateZ(3deg); }
+}
+
+/* ---------- Animasi masuk 3D saat discroll ---------- */
+.reveal { opacity: 0; transform: perspective(900px) rotateX(18deg) translateY(40px); transition: opacity .8s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+/* Elemen yang punya animasi masuk sekaligus tilt tetap bisa dimiringkan */
+.reveal.in[data-tilt] {
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: opacity .8s ease, transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
+}
+.reveal.in[data-tilt].is-tilting { transition: transform .06s linear, box-shadow .25s; }
+.reveal[data-delay="1"] { transition-delay: .1s; } .reveal[data-delay="2"] { transition-delay: .2s; }
+.reveal[data-delay="3"] { transition-delay: .3s; } .reveal[data-delay="4"] { transition-delay: .4s; }
+.reveal[data-delay="5"] { transition-delay: .5s; }
+
+@keyframes bounce-y { 50% { transform: translateZ(30px) scale(1.15) translateY(-6px); } }
+@keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+@keyframes pop-in { 0% { transform: perspective(800px) rotateX(-70deg) scale(.8); opacity: 0; } 100% { transform: none; opacity: 1; } }
+.pop-in { animation: pop-in .9s cubic-bezier(.2,.9,.25,1.2) both; }
+
+/* Tiket 3D */
+.ticket-3d {
+    position: relative; border-radius: 22px; overflow: hidden; color: #fff;
+    background: linear-gradient(135deg, #16a34a, #0b3d22);
+    box-shadow: 0 30px 50px -20px rgba(5,46,22,.6);
+}
+.ticket-3d::before, .ticket-3d::after {
+    content: ''; position: absolute; top: 50%; width: 34px; height: 34px; border-radius: 50%;
+    background: #e9f9dc; transform: translateY(-50%);
+}
+.ticket-3d::before { left: -17px; } .ticket-3d::after { right: -17px; }
+.ticket-3d .perforation { border-top: 3px dashed rgba(255,255,255,.35); }
+.ticket-3d .stripe { position: absolute; inset: 0; background: repeating-linear-gradient(115deg, transparent 0 22px, rgba(255,255,255,.04) 22px 44px); pointer-events: none; }
+
+/* Footer */
+.zoo-footer { color: #ecfdf5; background: linear-gradient(180deg, rgba(20,83,45,.92), rgba(5,46,22,.97)); }
+.zoo-footer a { color: #fde68a; }
+
+/* Menu mobile */
+.mobile-menu { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.mobile-menu.open { max-height: 480px; }
+
+/* Warna tambahan yang tidak ada di Tailwind 2 */
+.text-orange-500 { color: #f97316; }
+.text-orange-600 { color: #ea580c; }
+.from-teal-300 { --tw-gradient-from: #5eead4; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(94, 234, 212, 0)); }
+.to-teal-300 { --tw-gradient-to: #5eead4; }
+.to-orange-300 { --tw-gradient-to: #fdba74; }
+.to-orange-500 { --tw-gradient-to: #f97316; }
+.group:hover .group-hover\:rotate-6 { transform: translateZ(40px) rotate(6deg); }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+    .reveal { opacity: 1; transform: none; }
+}

@@ -1,3 +1,0 @@
-# Protect backups directory
-Order Deny,Allow
-Deny from all 
